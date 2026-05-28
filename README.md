@@ -16,7 +16,7 @@ Documentação técnica e implementação prática dos principais mecanismos de 
 ## Documentação
 
 A documentação completa está disponível via **GitHub Pages**:
-> `https://<seu-usuario>.github.io/projeto-conexoes-seguras/`
+> `https://joaopedro0s.github.io/projeto-conexoes-seguras/`
 
 ## Estrutura do Repositório
 
@@ -34,7 +34,7 @@ projeto-conexoes-seguras/
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/<seu-usuario>/projeto-conexoes-seguras.git
+   git clone https://github.com/Joaopedro0s/projeto-conexoes-seguras.git
    ```
 2. Acesse a pasta do módulo desejado e leia o `README.md` do módulo.
 3. Execute a PoC correspondente:
@@ -47,10 +47,9 @@ projeto-conexoes-seguras/
 
 | Nome | RA |
 |------|----|
-| Integrante 1 | - |
-| Integrante 2 | - |
-| Integrante 3 | - |
-| Integrante 4 | - |
+| Integrante 1 | Ana Carolina Gonçalves |
+| Integrante 2 | João Pedro Fonseca Alves de Carvalho |
+| Integrante 3 | Pedro de Lima Cavalcanti |
 
 ## Licença
 
