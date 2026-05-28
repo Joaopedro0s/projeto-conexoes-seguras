@@ -10,7 +10,8 @@ Em operação normal, uma NIC descarta quadros Ethernet cujo MAC de destino não
 
 ## Ferramenta Utilizada
 
-> _Preencher com a ferramenta escolhida pela equipe (ex: Scapy, Wireshark, tcpdump)_
+- **Scapy** — Biblioteca Python para manipulação e captura de pacotes de rede.
+- Execução requer privilégios de **root/administrador**.
 
 ## Estrutura da Demonstração
 
@@ -24,9 +25,13 @@ Veja a implementação em [`poc.py`](./poc.py).
 
 ```bash
 # Requer privilégios de administrador/root
-sudo python poc.py
+sudo python3 poc.py
 ```
 
 ## Resultado Esperado
 
-> _Descrever/inserir print do resultado após implementação_
+A PoC captura os 10 primeiros pacotes trafegados na rede local, exibindo os endereços MAC (Camada 2) e IP (Camada 3) de origem e destino, além do protocolo utilizado.
+
+![Resultado da PoC — Sniffing em Modo Promíscuo](./evidencias/resultado_sniffing.png)
+
+> **Análise:** Observe que pacotes destinados a outros hosts (MACs distintos) são interceptados com sucesso, confirmando o funcionamento do modo promíscuo. O protocolo `17` corresponde ao UDP e o `6` ao TCP.

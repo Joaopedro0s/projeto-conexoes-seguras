@@ -1,23 +1,20 @@
-# Módulo 2 — Criptografia e Handshake TLS
+# Módulo 2 — Criptografia e Handshake (A Base do TLS)
 
 ## Objetivo
 
-Demonstração prática da **criptografia híbrida** que fundamenta o HTTPS: uso de RSA/ECC para troca segura de chaves e AES para a transferência de dados.
+Demonstração prática do conceito de **criptografia híbrida** utilizado pelo HTTPS/TLS: uso de criptografia assimétrica (RSA) para a troca segura da chave de sessão e criptografia simétrica (AES) para a transferência veloz dos dados.
 
 ## Conceito Técnico
 
-A criptografia assimétrica é computacionalmente cara para volumes grandes de dados. Por isso, o TLS usa RSA/ECC apenas para trocar com segurança uma **chave de sessão** temporária; toda a comunicação subsequente é cifrada com AES, que é ordens de grandeza mais eficiente.
+O TLS não usa RSA para cifrar todo o tráfego pois operações assimétricas são ordens de magnitude mais lentas que as simétricas. A solução é a **criptografia híbrida**:
 
-**Fluxo simplificado do handshake TLS:**
-1. Cliente solicita chave pública do servidor.
-2. Servidor envia certificado com a chave pública.
-3. Cliente gera chave de sessão (AES) e a envia cifrada com a chave pública do servidor.
-4. Servidor decifra com sua chave privada — ambos agora compartilham a chave AES.
-5. Toda a comunicação passa a ser cifrada simetricamente com AES.
+1. **Fase 1 (Handshake):** O cliente usa a chave pública RSA do servidor para cifrar e transmitir com segurança uma chave de sessão AES gerada aleatoriamente.
+2. **Fase 2 (Transferência):** Todo o tráfego de dados real é cifrado/decifrado com a chave AES compartilhada — operação extremamente rápida.
 
 ## Ferramenta Utilizada
 
-> _Preencher com a ferramenta escolhida (ex: biblioteca `cryptography`, OpenSSL)_
+- **cryptography** (Python) — Biblioteca de primitivas criptográficas de alto nível.
+- Algoritmos: `RSA-2048` com padding `OAEP/SHA-256` e `AES-256` no modo `CFB`.
 
 ## Estrutura da Demonstração
 
@@ -31,9 +28,13 @@ Veja a implementação em [`poc.py`](./poc.py).
 
 ```bash
 pip install cryptography
-python poc.py
+python3 poc.py
 ```
 
 ## Resultado Esperado
 
-> _Descrever/inserir print do resultado após implementação_
+A PoC simula as duas fases do TLS, cifra um payload real, exibe o ciphertext hexadecimal e compara o tempo de execução entre RSA e AES.
+
+![Resultado da PoC — Criptografia Híbrida TLS](./evidencias/resultado_tls_hibrido.png)
+
+> **Análise:** O payload `Dados Confidenciais...` é cifrado para uma sequência hexadecimal ilegível e corretamente recuperado no destino. As métricas de desempenho evidenciam por que o AES é usado para os dados: é dezenas de vezes mais rápido que o RSA, justificando a arquitetura híbrida do TLS.
