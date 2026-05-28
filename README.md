@@ -45,7 +45,7 @@ projeto-conexoes-seguras/
 
 ## Equipe
 
-| Nome | RA |
+|  | Nome |
 |------|----|
 | Integrante 1 | Ana Carolina Gonçalves |
 | Integrante 2 | João Pedro Fonseca Alves de Carvalho |
